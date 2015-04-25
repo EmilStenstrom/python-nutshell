@@ -10,6 +10,7 @@ setup(
     author_email='em@kth.se',
     url='https://github.com/EmilStenstrom/python-nutshell',
     download_url='https://github.com/EmilStenstrom/python-nutshell/tarball/0.1.1',
+    install_requires=["requests"],
     keywords=['nutshell', 'nutshell-crm', 'json-rpc'],
     classifiers=[],
 )
