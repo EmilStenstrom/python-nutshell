@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
 
-from distutils.core import setup
+VERSION = '0.1.2'
+
+from setuptools import setup, find_packages
 setup(
     name='nutshell',
-    packages=['nutshell'],
-    version='0.1.1',
+    packages=find_packages(),
+    version=VERSION,
     description='A minimal python library to access Nutshell CRM:s JSON-RPC API.',
     author=u'Emil Stenström',
     author_email='em@kth.se',
     url='https://github.com/EmilStenstrom/python-nutshell',
-    download_url='https://github.com/EmilStenstrom/python-nutshell/tarball/0.1.1',
+    download_url='https://github.com/EmilStenstrom/python-nutshell/tarball/' + VERSION,
     install_requires=["requests"],
     keywords=['nutshell', 'nutshell-crm', 'json-rpc'],
     classifiers=[],
