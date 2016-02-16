@@ -2,10 +2,10 @@
 
 VERSION = '0.1.2'
 
-from setuptools import setup, find_packages
+from setuptools import setup
 setup(
     name='nutshell',
-    packages=find_packages(),
+    packages=["nutshell"],
     version=VERSION,
     description='A minimal python library to access Nutshell CRM:s JSON-RPC API.',
     author=u'Emil Stenström',
