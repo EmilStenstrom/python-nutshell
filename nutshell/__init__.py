@@ -1,5 +1,6 @@
 import json
 import requests
+import six
 from uuid import uuid4
 
 class NutshellApiException(Exception):
@@ -25,9 +26,9 @@ class NutshellAPI(object):
         return wrapper
 
     def json_rpc(self, url, method, params={}):
-        if not isinstance(url, basestring):
+        if not isinstance(url, six.string_types):
             raise NutshellApiException("Invalid url '%s'" % url)
-        elif not isinstance(method, basestring):
+        elif not isinstance(method, six.string_types):
             raise NutshellApiException("Invalid method '%s'" % method)
         elif not isinstance(params, dict):
             raise NutshellApiException('Invalid params, must be a dictionary')
@@ -63,4 +64,4 @@ class NutshellAPI(object):
         return 'https://' + data["api"] + '/api/v1/json'
 
     def _generate_request_id(self):
-        return unicode(uuid4())
+        return six.text_type(uuid4())
