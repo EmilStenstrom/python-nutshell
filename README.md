@@ -7,7 +7,7 @@ A minimal python library to access Nutshell CRM:s JSON-RPC API.
 
 ## Installation
 
-```python
+```bash
 pip install nutshell
 ```
 
