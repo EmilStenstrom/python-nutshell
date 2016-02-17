@@ -7,6 +7,6 @@ python:
   - "3.5"
   - "nightly"
 install:
-  - pip install -q -e . --use-mirrors
+  - pip install -q -e .
 script:
   - python setup.py test
