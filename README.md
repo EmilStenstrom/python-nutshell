@@ -1,7 +1,7 @@
 # python-nutshell
 A minimal python library to access Nutshell CRM:s JSON-RPC API.
 
-[![Build Status](https://travis-ci.org/citizen-stig/python-nutshell.svg?branch=master)](https://travis-ci.org/citizen-stig/python-nutshell)
+[![Build Status](https://travis-ci.org/EmilStenstrom/python-nutshell.svg?branch=master)](https://travis-ci.org/EmilStenstrom/python-nutshell)
 [![PyPi version](https://img.shields.io/pypi/v/nutshell.svg)](https://pypi.python.org/pypi/nutshell/)
 [![PyPi downloads](https://img.shields.io/pypi/dm/nutshell.svg)](https://pypi.python.org/pypi/nutshell/)
 
