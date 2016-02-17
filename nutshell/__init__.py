@@ -1,4 +1,3 @@
-import json
 import requests
 import six
 from uuid import uuid4
@@ -40,7 +39,7 @@ class NutshellAPI(object):
             'id': self._generate_request_id(),
         }
 
-        response = self.session.post(url, data=json.dumps(payload))
+        response = self.session.post(url, json=payload)
 
         if response.status_code != 200:
             raise NutshellApiException('HTTP status %s while finding endpoint: %s' % (
