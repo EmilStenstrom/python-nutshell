@@ -16,5 +16,12 @@ setup(
     tests_require=["mock>=1.0.1", "nose>=1.3.7"],
     test_suite="nose.collector",
     keywords=['nutshell', 'nutshell-crm', 'json-rpc'],
-    classifiers=[],
-)
+    classifiers=[
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 2.6",
+        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3.3",
+        "Programming Language :: Python :: 3.4",
+        "Programming Language :: Python :: 3.5",
+        "Operating System :: OS Independent",
+    ])
