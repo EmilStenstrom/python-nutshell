@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import json
 from uuid import uuid4
 import unittest
 import six
@@ -124,7 +123,7 @@ class TestAPIClient(unittest.TestCase):
         expected_payload = {'method': method,
                             'params': params,
                             'id': six.text_type(mock_id)}
-        mock_session.post.assert_called_with(url, data=json.dumps(expected_payload))
+        mock_session.post.assert_called_with(url, json=expected_payload)
         self.assertTrue(mock_response.json.called)
 
     @patch('nutshell.NutshellAPI._api_endpoint_for_user')
