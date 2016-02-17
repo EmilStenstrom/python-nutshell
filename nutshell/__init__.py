@@ -25,7 +25,8 @@ class NutshellAPI(object):
             )
         return wrapper
 
-    def json_rpc(self, url, method, params={}):
+    def json_rpc(self, url, method, params=None):
+        params = {} if params is None else params
         if not isinstance(url, six.string_types):
             raise NutshellApiException("Invalid url '%s'" % url)
         elif not isinstance(method, six.string_types):
