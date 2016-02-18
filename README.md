@@ -12,7 +12,7 @@ pip install nutshell
 ```
 
 ## Example of usage
-First create a [Nutshell **APIKEY**](http://www.import2.com/questions/235-how-do-i-get-nutshell-crm-api-key). Then Use the e-mail adress one of your existing users as the **USERNAME**.
+First create a [Nutshell **APIKEY**](http://www.import2.com/questions/235-how-do-i-get-nutshell-crm-api-key). Then Use the e-mail address one of your existing users as the **USERNAME**.
 
 ```python
 from nutshell import NutshellAPI

@@ -2,8 +2,10 @@ import requests
 import six
 from uuid import uuid4
 
+
 class NutshellApiException(Exception):
     pass
+
 
 class NutshellAPI(object):
     DISCOVERY_ENDPOINT = u'https://api.nutshell.com/v1/json'

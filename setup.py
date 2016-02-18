@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-
+from setuptools import setup
 VERSION = '0.2'
 
-from setuptools import setup
+download_url = 'https://github.com/EmilStenstrom/python-nutshell/tarball/{0}'
 setup(
     name='nutshell',
     packages=["nutshell"],
     version=VERSION,
-    description='A minimal python library to access Nutshell CRM:s JSON-RPC API.',
+    description='A python library to access Nutshell CRM:s JSON-RPC API.',
     author=u'Emil Stenström',
     author_email='em@kth.se',
     url='https://github.com/EmilStenstrom/python-nutshell',
