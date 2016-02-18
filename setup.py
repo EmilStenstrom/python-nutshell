@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from setuptools import setup
+
 VERSION = '0.2'
 
 download_url = 'https://github.com/EmilStenstrom/python-nutshell/tarball/{0}'

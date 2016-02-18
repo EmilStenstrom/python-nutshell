@@ -1,9 +1,11 @@
 # -*- encoding: utf-8 -*-
-from uuid import uuid4
 import unittest
+from uuid import uuid4
+
 import six
-import nutshell
 from flake8.engine import get_style_guide
+
+import nutshell
 
 if six.PY2:
     from mock import patch, Mock
