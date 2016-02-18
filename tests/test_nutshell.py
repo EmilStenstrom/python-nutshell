@@ -3,10 +3,18 @@ from uuid import uuid4
 import unittest
 import six
 import nutshell
+from flake8.engine import get_style_guide
+
 if six.PY2:
     from mock import patch, Mock
 else:
     from unittest.mock import patch, Mock
+
+
+class TestFlake8Compliance(unittest.TestCase):
+    def test_flake8(self):
+        report = get_style_guide(parse_argv=True, paths=".").check_files()
+        self.assertEquals(report.get_state()["total_errors"], 0)
 
 
 @patch('nutshell.requests')
