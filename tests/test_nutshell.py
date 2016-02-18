@@ -2,11 +2,11 @@
 from uuid import uuid4
 import unittest
 import six
+import nutshell
 if six.PY2:
     from mock import patch, Mock
 else:
     from unittest.mock import patch, Mock
-import nutshell
 
 
 @patch('nutshell.requests')
@@ -38,14 +38,13 @@ class TestAPIClient(unittest.TestCase):
         mock_json_rpc.assert_called_with(
             url=u'https://api.nutshell.com/v1/json',
             method='getApiForUsername',
-            params={'username': username})
-        self.assertEqual(client.user_endpoint,
-                         'https://api.example.com/api/v1/json')
+            params={'username': username}
+        )
+        self.assertEqual(client.user_endpoint, 'https://api.example.com/api/v1/json')
 
     @patch('nutshell.NutshellAPI._api_endpoint_for_user')
     @patch('nutshell.NutshellAPI.json_rpc')
-    def test_api_called_without_params(self, mock_json_rpc, mock_get_endpoint,
-                                       mock_requests):
+    def test_api_called_without_params(self, mock_json_rpc, mock_get_endpoint, mock_requests):
         mock_get_endpoint.return_value = endpoint = '/url'
         mock_json_rpc.return_value = expected_result = Mock()
         method_name = 'findAccounts'
@@ -54,14 +53,11 @@ class TestAPIClient(unittest.TestCase):
         actual_result = client.findAccounts()
 
         self.assertEqual(expected_result, actual_result)
-        mock_json_rpc.assert_called_with(url=endpoint,
-                                         method=method_name,
-                                         params={})
+        mock_json_rpc.assert_called_with(url=endpoint, method=method_name, params={})
 
     @patch('nutshell.NutshellAPI._api_endpoint_for_user')
     @patch('nutshell.NutshellAPI.json_rpc')
-    def test_api_called_with_params(self, mock_json_rpc, mock_get_endpoint,
-                                    mock_requests):
+    def test_api_called_with_params(self, mock_json_rpc, mock_get_endpoint, mock_requests):
         mock_get_endpoint.return_value = endpoint = '/url'
         mock_json_rpc.return_value = expected_result = Mock()
         method_name = 'getLead'
@@ -71,36 +67,26 @@ class TestAPIClient(unittest.TestCase):
         actual_result = client.getLead(leadId=lead_id)
 
         self.assertEqual(expected_result, actual_result)
-        mock_json_rpc.assert_called_with(url=endpoint,
-                                         method=method_name,
-                                         params={"leadId": lead_id})
+        mock_json_rpc.assert_called_with(
+            url=endpoint,
+            method=method_name,
+            params={"leadId": lead_id}
+        )
 
     @patch('nutshell.NutshellAPI._api_endpoint_for_user')
     def test_json_rpc_bad_url(self, mock_get_endpoint, mock_requests):
         client = nutshell.NutshellAPI('', '')
-        self.assertRaises(nutshell.NutshellApiException,
-                          client.json_rpc,
-                          {},
-                          'method',
-                          {})
+        self.assertRaises(nutshell.NutshellApiException, client.json_rpc, {}, 'method', {})
 
     @patch('nutshell.NutshellAPI._api_endpoint_for_user')
     def test_json_rpc_bad_method(self, mock_get_endpoint, mock_requests):
         client = nutshell.NutshellAPI('', '')
-        self.assertRaises(nutshell.NutshellApiException,
-                          client.json_rpc,
-                          '/u',
-                          {},
-                          {})
+        self.assertRaises(nutshell.NutshellApiException, client.json_rpc, '/u', {}, {})
 
     @patch('nutshell.NutshellAPI._api_endpoint_for_user')
     def test_json_rpc_bad_params(self, mock_get_endpoint, mock_requests):
         client = nutshell.NutshellAPI('', '')
-        self.assertRaises(nutshell.NutshellApiException,
-                          client.json_rpc,
-                          '/u',
-                          'm',
-                          [])
+        self.assertRaises(nutshell.NutshellApiException, client.json_rpc, '/u', 'm', [])
 
     @patch('nutshell.uuid4')
     @patch('nutshell.NutshellAPI._api_endpoint_for_user')
@@ -110,8 +96,7 @@ class TestAPIClient(unittest.TestCase):
         mock_session.post.return_value = mock_response = Mock()
         mock_response.status_code = 200
         expected_result = {'key': 'value'}
-        mock_response.json.return_value = {'result': expected_result,
-                                           'error': False}
+        mock_response.json.return_value = {'result': expected_result, 'error': False}
         url = '/u'
         method = 'getLead'
         params = {'leadId': 123}
@@ -120,9 +105,7 @@ class TestAPIClient(unittest.TestCase):
         actual_result = client.json_rpc(url, method, params)
 
         self.assertEqual(expected_result, actual_result)
-        expected_payload = {'method': method,
-                            'params': params,
-                            'id': six.text_type(mock_id)}
+        expected_payload = {'method': method, 'params': params, 'id': six.text_type(mock_id)}
         mock_session.post.assert_called_with(url, json=expected_payload)
         self.assertTrue(mock_response.json.called)
 
@@ -133,11 +116,13 @@ class TestAPIClient(unittest.TestCase):
         mock_response.status_code = 401
 
         client = nutshell.NutshellAPI('', '')
-        self.assertRaises(nutshell.NutshellApiException,
-                          client.json_rpc,
-                          '/u',
-                          'getLead',
-                          {'leadId': 123})
+        self.assertRaises(
+            nutshell.NutshellApiException,
+            client.json_rpc,
+            '/u',
+            'getLead',
+            {'leadId': 123}
+        )
         self.assertFalse(mock_response.json.called)
 
     @patch('nutshell.NutshellAPI._api_endpoint_for_user')
@@ -148,9 +133,11 @@ class TestAPIClient(unittest.TestCase):
         mock_response.json.return_value = {'error': {'message': 'Bad Lead ID'}}
 
         client = nutshell.NutshellAPI('', '')
-        self.assertRaises(nutshell.NutshellApiException,
-                          client.json_rpc,
-                          '/u',
-                          'getLead',
-                          {'leadId': 123})
+        self.assertRaises(
+            nutshell.NutshellApiException,
+            client.json_rpc,
+            '/u',
+            'getLead',
+            {'leadId': 123}
+        )
         self.assertTrue(mock_response.json.called)
